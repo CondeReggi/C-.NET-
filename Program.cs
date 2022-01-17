@@ -91,6 +91,39 @@ namespace ConsoleApp1
             return alphabet.All(x => str.Contains(x));
         }
 
+        // Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any 
+        // elements with the same value next to each other and preserving the original order of elements.
+
+        // For example:
+        //uniqueInOrder("AAAABBBCCDAABBB") == {'A', 'B', 'C', 'D'}
+
+        public static IEnumerable<T> UniqueInOrder<T>( IEnumerable<T> iterable ) 
+        {
+            var listaAuxiliar = new List<T>();  
+            foreach (var item in iterable)
+            {
+                if ( !listaAuxiliar.Contains( item ) ){
+                  listaAuxiliar.Add( item );
+                }
+                
+            } 
+            return listaAuxiliar;
+        }
+
+        // This time no story, no theory. The examples below show you how to write function accum:
+
+        // Examples:
+        // accum("abcd") -> "A-Bb-Ccc-Dddd"
+        // accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+        // accum("cwAt") -> "C-Ww-Aaa-Tttt"
+
+        public static String Accum(string s) 
+        {
+            return string.Join("-",s.Select((x,i)=>char.ToUpper(x)+new string(char.ToLower(x),i)));
+
+            // .Join ( Une cada parte con el primer parametro, en este caso con "-" ) 
+            // .Select (  )
+        }
 
 
         static void Main(string[] args)
@@ -146,6 +179,12 @@ namespace ConsoleApp1
             //(char)97 + 27 => z ? No, + 25 => (char)122 => z
 
             Console.WriteLine(IsPangram("The quick brown fox jumps over the lazy dog."));
+
+            Console.WriteLine( 
+                Accum("hola") + " ");    
+
+            Console.ReadKey();
         }
+
     }
 }
